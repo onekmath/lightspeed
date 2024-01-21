@@ -31,7 +31,7 @@ parser.add_argument("--batch-size", type=int, default=16)
 parser.add_argument("--compile", action="store_true", default=False)
 parser.add_argument("--device", type=str, default="cuda")
 parser.add_argument("--seed", type=int, default=42)
-parser.add_argument("--ckpt-interval", type=int, default=5_000)
+parser.add_argument("--ckpt-interval", type=int, default=1)
 parser.add_argument("--rm-old-ckpt", action="store_true", default=False)
 FLAGS = parser.parse_args()
 with open(FLAGS.config, "rb") as f:
@@ -255,7 +255,7 @@ def evaluate(step):
 
 
 # TRAINING LOOP ...
-for epoch in range(_epoch + 1, 100_000):
+for epoch in range(_epoch + 1, 5):
     ds = load_tfdata(
         FLAGS.tfdata,
         "train",
