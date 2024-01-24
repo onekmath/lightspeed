@@ -31,7 +31,7 @@ parser.add_argument("--batch-size", type=int, default=4) #orginal 16
 parser.add_argument("--compile", action="store_true", default=False)
 parser.add_argument("--device", type=str, default="cuda")
 parser.add_argument("--seed", type=int, default=42)
-parser.add_argument("--ckpt-interval", type=int, default=100) #ori 5000
+parser.add_argument("--ckpt-interval", type=int, default=500) #ori 5000
 parser.add_argument("--rm-old-ckpt", action="store_true", default=True)
 FLAGS = parser.parse_args()
 with open(FLAGS.config, "rb") as f:
