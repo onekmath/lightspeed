@@ -27,12 +27,12 @@ parser.add_argument("--config", type=str, default="config.json")
 parser.add_argument("--tfdata", type=str, default="data/tfdata")
 parser.add_argument("--log-dir", type=Path, default="logs")
 parser.add_argument("--ckpt-dir", type=Path, default="ckpts")
-parser.add_argument("--batch-size", type=int, default=1) #orginal 16
+parser.add_argument("--batch-size", type=int, default=4) #orginal 16
 parser.add_argument("--compile", action="store_true", default=False)
 parser.add_argument("--device", type=str, default="cuda")
 parser.add_argument("--seed", type=int, default=42)
-parser.add_argument("--ckpt-interval", type=int, default=1) #ori 5000
-parser.add_argument("--rm-old-ckpt", action="store_true", default=False)
+parser.add_argument("--ckpt-interval", type=int, default=100) #ori 5000
+parser.add_argument("--rm-old-ckpt", action="store_true", default=True)
 FLAGS = parser.parse_args()
 with open(FLAGS.config, "rb") as f:
     hps = json.load(f, object_hook=lambda x: SimpleNamespace(**x))
@@ -255,7 +255,7 @@ def evaluate(step):
 
 
 # TRAINING LOOP ...
-for epoch in range(_epoch + 1, 5): #or 100_000
+for epoch in range(_epoch + 1, 100000): #or 100_000
     print(epoch)
     ds = load_tfdata(
         FLAGS.tfdata,
@@ -363,6 +363,7 @@ for epoch in range(_epoch + 1, 5): #or 100_000
 
             if step % FLAGS.ckpt_interval == 0:
                 evaluate(step)
+                """
                 torch.save(
                     {
                         "step": step,
@@ -378,6 +379,14 @@ for epoch in range(_epoch + 1, 5): #or 100_000
                     },
                     FLAGS.ckpt_dir / f"ckpt_{step:08d}.pth",
                 )
+                """
+                torch.save(
+                    {
+                        "net_g": net_g.state_dict(),        
+                    },
+                    FLAGS.ckpt_dir / f"ckpt_{step:08d}.pth",
+                )
+
                 all_ckpts.append(FLAGS.ckpt_dir / f"ckpt_{step:08d}.pth")
                 # keep only 10 latest checkpoints
                 if len(all_ckpts) >= 11 and FLAGS.rm_old_ckpt:
