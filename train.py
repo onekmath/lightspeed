@@ -384,7 +384,7 @@ for epoch in range(_epoch + 1, 100000): #or 100_000
                     {
                         "net_g": net_g.state_dict(),        
                     },
-                    FLAGS.ckpt_dir / f"ckpt_{step:05d}.pth",
+                    FLAGS.ckpt_dir / f"ckpt_{step:08d}.pth",
                 )
 
                 all_ckpts.append(FLAGS.ckpt_dir / f"ckpt_{step:08d}.pth")
