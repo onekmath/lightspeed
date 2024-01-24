@@ -1,0 +1,1 @@
+mfa train --num_jobs 3 --use_mp --clean --overwrite --no_textgrid_cleanup --single_speaker --output_format json  --output_directory .\data\mydata .\data\mydata .\data\lexicon.txt .\data\vbx_mfa
