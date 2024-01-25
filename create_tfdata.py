@@ -140,7 +140,7 @@ with open("phone_set.json", "w", encoding="utf-8") as f:
 assert phone_set.index("<SEP>") == 0
 
 random.Random(42).shuffle(dataset)
-L = len(dataset) - 30
+L = len(dataset) - 30 # ori 256
 train_data = dataset[:L]
 test_data = dataset[L:]
 print("Train data size:", len(train_data))
@@ -148,4 +148,4 @@ print("Test data size:", len(test_data))
 
 write_split("test", test_data, 1)
 
-write_split("train", train_data, 30)
+write_split("train", train_data, 30)  # ori 256
