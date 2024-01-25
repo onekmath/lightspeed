@@ -27,7 +27,7 @@ parser.add_argument("--config", type=str, default="config.json")
 parser.add_argument("--tfdata", type=str, default="data/tfdata")
 parser.add_argument("--log-dir", type=Path, default="logs")
 parser.add_argument("--ckpt-dir", type=Path, default="ckpts")
-parser.add_argument("--batch-size", type=int, default=4) #orginal 16
+parser.add_argument("--batch-size", type=int, default=8) #orginal 16
 parser.add_argument("--compile", action="store_true", default=False)
 parser.add_argument("--device", type=str, default="cuda")
 parser.add_argument("--seed", type=int, default=42)
