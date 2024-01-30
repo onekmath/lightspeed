@@ -17,7 +17,7 @@ vietnamese_characters = [
     'y', 'ỳ', 'ý', 'ỷ', 'ỹ', 'ỵ',
     'b', 'c', 'd', 'đ', 'g', 'h',
     'k', 'l', 'm', 'n', 'p', 'q',
-    'r', 's', 't', 'v', 'x'
+    'r', 's', 't', 'v', 'x', 'w', 'z'
 ]
 alphabet = "".join(vietnamese_characters)
 space_re = regex.compile(r"\s+")
